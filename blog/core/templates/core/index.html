@@ -1,0 +1,47 @@
+{% extends 'core/base.html' %}
+
+{% block title %}Home - My Blog{% endblock %}
+
+{% block content %}
+<section class="post">
+  <div class="container">
+    <div class="section-title">
+      <h2>Post</h2>
+    </div>
+    <div class="row">
+      {% for post in posts %}
+        <div class="col-lg-4">
+          <div class="card mb-3" style="width: 18rem;">
+            <img src="{{ post.image.url }}" class="card-img-top" alt="{{ post.title }}">
+            <div class="card-body">
+              <h4 class="card-title">{{ post.title }}</h4>
+              <p class="card-text">
+                By: {{ post.created_by.first_name }} {{ post.created_by.last_name }}<br>
+                At: {{ post.created_at }}
+              </p>
+              <a href="{% url 'post:detail' post.id %}" class="btn btn-primary">Read Blog</a>
+            </div>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+<section class="category-section">
+  <div class="container">
+    <div class="section-title">
+      <h2>Categories</h2>
+    </div>
+    <div class="row">
+      {% for category in categories %}
+        <div class="col-lg-4">
+          <div class="category-card card">
+            <h4>{{ category.name }}</h4>
+            <p>{{ category.posts.count }}</p>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+{% endblock %}

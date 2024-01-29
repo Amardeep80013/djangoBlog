@@ -1,0 +1,52 @@
+{% extends 'core/base.html' %}
+
+{% block title %}{{ post.title }}{% endblock %}
+
+{% block content %}
+  <section class="post-section">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8">
+          <div class="post-detail">
+            <img src="{{ post.image.url }}" width="100%" class="img-fluid" alt="{{ post.title }}">
+            <h4>{{ post.title }}</h4>
+            <p>Created By: {{ post.created_by.first_name }} {{ post.created_by.last_name }}<br>
+              At: {{ post.created_at }}
+            </p>
+            <p>{{ post.description }}</p>
+          </div>
+        </div>
+        <div class="col-lg-4">
+          <div class="post-side">
+            <div class="row">
+              {% if request.user.is_authenticated %}
+              <div class="col-lg-6">
+                <a href="{% url 'post:edit' post.pk %}" class="btn bt-secondary">Edit</a>
+              </div>
+              <div class="col-lg-6">
+                <a href="{% url 'post:delete' post.pk %}" class="btn bt-danger">Delete</a>
+              </div>
+              {% else %}
+                {% for related_post in related_posts %}
+                  <div class="col-lg-4">
+                    <div class="side-image">
+                      <img class="img-thuimbnail" width="100%" src="{{ related_post.image.url }}" alt="{{ related_post.title }}">
+                    </div>
+                  </div>
+                  <div class="col-lg-8">
+                    <div class="side-post-detail">
+                      <h4><a href="{% url 'post:detail' related_post.pk %}">{{ related_post.title }}</a></h4>
+                      <p>Created By: {{ post.created_by.first_name }} {{ post.created_by.last_name }}<br>
+                        At: {{ post.created_at }}
+                      </p>
+                    </div>
+                  </div>
+                {% endfor %}
+              {% endif %}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+{% endblock %}

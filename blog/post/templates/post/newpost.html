@@ -1,0 +1,27 @@
+{% extends 'core/base.html' %}
+
+{% block title %}{{ title }}{% endblock %}
+
+{% block content %}
+<section class="itemFormSection">
+  <div class="container">
+    <div class="section-title">
+      <h2>{{ type }} Post</h2>
+    </div>
+    <form method="post" action="{% if type == 'Edit' %}{% url 'post:edit' pk %}{% else %}.{% endif %}" enctype="multipart/form-data">
+      {% csrf_token %}
+      {{ form.as_p }}
+
+      {% if form.errors or form.non_field_errors %}
+        <div class="text-danger">
+          {% for fields in form %}
+            {{ field.errors }}
+          {% endfor %}
+        </div>
+      {% endif %}
+
+      <button class="btn btn-primary">{{ btn }} Post</button>
+    </form>
+  </div>
+</section>
+{% endblock %}

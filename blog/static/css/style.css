@@ -1,0 +1,44 @@
+section{
+  padding: 80px 0;
+}
+.section-title{
+  text-align: center;
+  padding: 30px 0;
+}
+footer{
+  padding: 80px 0;
+}
+.category-card{
+  text-align: center;
+  vertical-align: center;
+  padding: 30px;
+}
+.category-card p{
+  margin: 0;
+}
+.form-con{
+  background-color: #a3e2f6;
+}
+.form-con .row{
+  justify-content: center;
+  align-items: center;
+}
+.form-col{
+  padding: 30px;
+  background-color: #fff;
+  border: 1px solid #a3e2f6;
+}
+.signup-form h2{
+  text-transform: uppercase;
+  margin-bottom: 20px;
+  color: #a3e2f6;
+  font-weight: 600;
+}
+.btn-theme-color{
+  background-color: #a3e2f6;
+  color: #555;
+  transition: 0.5s;
+}
+.btn-theme-color:hover{
+  background-color: #86cde3;
+}

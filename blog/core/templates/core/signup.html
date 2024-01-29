@@ -1,0 +1,66 @@
+{% extends 'core/base.html' %}
+
+{% block title %}Sign Up - My Blog{% endblock %}
+
+{% block content %}
+
+<section class="signup">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 offset-lg-2 form-con">
+        <div class="row">
+          <div class="col-lg-6">
+            <img src="/static/images/user-img.png" alt="user register" width="100%">
+          </div>
+          <div class="col-lg-6 form-col">
+            <div class="signup-form">
+              <h2>Sign Up</h2>
+              <form method="post" action=".">
+                {% csrf_token %}
+
+                <div class="mb-3">
+                  <!-- <label class="form-label">First Name</label> -->
+                  {{ form.first_name }}
+                </div>
+
+                <div class="mb-3">
+                  {{ form.last_name }}
+                </div>
+
+                <div class="mb-3">
+                  {{ form.email }}
+                </div>
+
+                <div class="mb-3">
+                  {{ form.username }}
+                </div>
+
+                <div class="mb-3">
+                  {{ form.password1 }}
+                </div>
+
+                <div class="mb-3">
+                  {{ form.password2 }}
+                </div>
+
+                {% if form.errors or form.non_field_errors %}
+                <div class="text-danger">
+                  {% for field in form %}
+                    {{ field.errors }}
+                  {% endfor %}
+
+                  {{ form.non_field_errors}}
+                </div>
+                {% endif %}
+                <button class="btn btn-theme-color">Submit</button>
+
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% endblock %}
